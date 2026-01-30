@@ -1,0 +1,15 @@
+package com.example.demo;
+
+import com.example.loose.NotificationService;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "com.example") // to tell the code to scan every component present in the base package
+public class AppConfig {
+    @Bean(initMethod = "init", destroyMethod = "cleanup")
+    public LifeCycleBean lifeCycleBean(NotificationService notificationService){
+        return new LifeCycleBean(notificationService);
+    }
+}
